@@ -11,24 +11,24 @@ const todoAnimal = () => {
   return animalReduce;
 };
 
-// function filterAnimal(para1) {
-//   const value = Object.values(para1);
-//   console.log(value);
-//   const arrayFind = species.find((currAnimal) => currAnimal.name === value[0]);
-//   console.log(arrayFind);
-//   const arrayMap = arrayFind.reduce((acc, currAnimal) => {
-//     acc = currAnimal.residents.length;
-//     return acc;
-//   }, 0);
-//   console.log(arrayMap);
-//   return arrayMap;
-// }
+function filterAnimal(para1) {
+  const value = Object.values(para1);
+  if (value.length > 1) {
+    const arrayFilter = species
+      .find((currAnimal) => currAnimal.name === value[0]).residents
+      .filter((currAnimal) => currAnimal.sex === value[1]).length;
+    return arrayFilter;
+  }
+  const arrayFind = species.find((currAnimal) => currAnimal.name === value[0]).residents.length;
+  return arrayFind;
+}
 
 function countAnimals(animal) {
   // seu código aqui
   if (!animal) {
     return todoAnimal();
   }
+  return filterAnimal(animal);
 }
 
 module.exports = countAnimals;
